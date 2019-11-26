@@ -27,7 +27,7 @@
   </div>
   <div class="d-flex flex-row justify-content-around">
     <div class="p-2">
-      <form action="<c:url value="/login"/>" method="get">
+      <form action="<c:url value="app/login"/>" method="get">
         <button type="submit" class="btn btn-primary">Login</button>
       </form>
     </div>

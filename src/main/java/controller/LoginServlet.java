@@ -1,6 +1,7 @@
 package controller;
 
 import bean.LoginBean;
+import ch.qos.logback.classic.Logger;
 import dao.LoginDao;
 import model.Dragon;
 import model.User;
@@ -20,15 +21,24 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet( value = "/login")
+//TODO comments
+@WebServlet( value = "/app/login")
 public class LoginServlet extends HttpServlet {
 
+    //protected final Logger log = LoggerFactory.get
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("w doGet w LoginServlet");
+        req.getRequestDispatcher("/WEB-INF/app/login.jsp").forward(req, resp);
+    }
 
     /**
      * This function is used only when in login.jsp to send login form for authorisation
      */
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("LoginServlet doPost");
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
@@ -38,7 +48,7 @@ public class LoginServlet extends HttpServlet {
 
         if (!isEmailFormatOK || !isPasswordFormatOK) {
             req.setAttribute("errLoginFormat", "Email or password has wrong format");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/app/login.jsp").forward(req, resp);
         }
 
         LoginBean loginBean = new LoginBean();
@@ -68,17 +78,16 @@ public class LoginServlet extends HttpServlet {
             user.setDragonList(dragonList);*/
 
             session.setAttribute("user", user);
-            resp.sendRedirect("home.jsp");
+            System.out.println("contextPath = " + req.getContextPath());
+            resp.sendRedirect(req.getContextPath() + "/app/home");
+
         } else {
+            System.out.println("LoginServet doPost else");
             req.setAttribute("errMessage", "false");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/app/login.jsp").forward(req, resp);
         }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
-    }
 
 
 }

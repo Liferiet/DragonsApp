@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+//TODO comments
 @WebServlet(value = "/signUp")
 public class SignUpServlet extends HttpServlet {
 

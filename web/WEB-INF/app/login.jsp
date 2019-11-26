@@ -12,7 +12,7 @@
 <head>
     <title>Login page</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/bigstyle.css">
+    <link rel="stylesheet" href="../../css/bigstyle.css">
 
 <%--    <script>
         async function main() {
@@ -28,7 +28,7 @@
 <div class="container">
 
 <%--    <div id="headerPlaceholder" class="row" style="background-color: pink">Tekst</div>--%>
-    <%@ include file="header.jsp"%>
+    <%@ include file="../../header.jsp"%>
 
     <div class="row login-error-message ">
         <%=(request.getAttribute("errLoginFormat") == null) ? "" : request.getAttribute("errLoginFormat")%>
@@ -39,7 +39,7 @@
 
         </div>
         <div class="col-6" style="background-color: white">
-            <form action="<c:url value="/login"/>" method="post">
+            <form action="<c:url value="/app/login"/>" method="post">
                 <div class="form-group">
                     <label for="inputEmail">Email</label>
                     <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Enter email">
@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <%@ include file="footer.jsp"%>
+    <%@ include file="../../footer.jsp"%>
 
 </div>
 
